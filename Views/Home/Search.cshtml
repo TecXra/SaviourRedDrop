@@ -1,0 +1,55 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3" style="margin-top:30px;">
+
+            <ul class="list-group">
+
+                <a href="" class="btn btn-danger btn-sm btn-block"><h5> Home</h5></a>
+                <a href="" class="btn btn-danger btn-sm btn-block"><h5> About us</h5></a>
+                <a href="" class="btn btn-danger btn-sm btn-block"><h5> Contacts</h5></a>
+                <a href="" class="btn btn-danger btn-sm btn-block"><h5> Search</h5></a>
+                <a href="" class="btn btn-danger btn-sm btn-block"><h5> FeedBack</h5></a>
+                <a href="" class="btn btn-danger btn-sm btn-block"><h5> Edit Account</h5></a>
+                </ul>
+
+        </div>
+        <div class="col-sm-6" style="margin-top:30px; padding-left:80px;">
+            <img src="~/Images/2.png" class="img-responsive" style="width:450px; height:225px; ">
+            <div  style="margin-top:40px; margin-left:20px;">
+                  <div  class="form-inline">
+                     @using (Html.BeginForm("SearchUser", "Home", FormMethod.Get))
+                        { 
+                          <div class="form-group">
+                          <label for="Text">Area</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.DropDownList("Area", null, htmlAttributes: new { @class = "form-control" })
+                          </div><br />
+
+                          <div class="form-group">
+                           <label for="Text">BloodGroup</label>&nbsp;&nbsp;
+                            @Html.DropDownList("BGId",null,htmlAttributes: new { @class = "form-control" })
+                          </div><br/><br/>
+
+                        <input type="submit" value="Search Donor" class="btn btn-danger" />
+                       }
+                   </div>
+                </div>
+            </div>
+          
+        <div class="col-sm-3" style="margin-top:32px; padding-left:0px;">
+            <div style="margin-top:15px;">
+                <img src="~/Images/16.JPG" class="img-responsive img-thumbnail" style="width:500px; height:225px; ">
+            </div>
+            
+             <div>
+                <img src="~/Images/12.jpg" class="img-responsive img-thumbnail" style="width:500px; height:225px; ">
+            </div>
+
+           
+        </div>
+            </div>
+  
+
+
+
+
+       

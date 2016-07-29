@@ -1,0 +1,61 @@
+﻿//@model IEnumerable<SaviourRedDrop.Models.SaviourRDUser>
+@{
+    ViewBag.Title = "Search result";
+}
+<h2>Search Result</h2>
+
+
+@*<table class="table" border="1" style="margin-left:10px;">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.BloodGroup)</th>
+            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Area)</th>
+
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.BloodGroup)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.City)</td>
+
+
+
+            </tr>
+        }
+    </table>*@
+
+
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-4" style="border:1px solid red;">
+                <th>@Html.DisplayNameFor(model => model.Name)</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Html.DisplayFor(modelItem => item.Name)<br />
+                <th>@Html.DisplayNameFor(model => model.BloodGroup.BloodGroupName)</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                @Html.DisplayFor(modelItem => item.BloodGroup.BloodGroupName)<br />
+
+                @Html.DisplayNameFor(model => model.City.CityName)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                @Html.DisplayFor(modelitem => item.City.CityName)<br />
+
+                <div style="background-color:red; width:55px; padding:3px;">
+                    @Html.ActionLink("Details", "details", "home", new { id = item.Id }, new { style = "color:white" })
+                </div>
+                <br />
+            </div>
+
+            
+        }
+    </div>
+</div>
+
+

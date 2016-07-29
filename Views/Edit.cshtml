@@ -1,0 +1,65 @@
+﻿@Model Update<SaviourRedDrop.Models.SaviourRDUser>
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+   
+   //  @Html.EditorFor(model => model.BloodGroup);
+
+     //@Html.EditorFor(model => new model.Area);
+    //<p>
+     //   <input type="submit" value="Save" />
+    //</p>
+}
+
+<form action="/Admin/Edit/5" method="post">
+ 
+    <td>Name</td><br/>
+        
+    <input class="text-box single-line" id="BloodGroup" name="BloodGroup"
+           type="text" value=" " /><br /><br />
+    <td>BloodGroup</td><br />
+    <select id="GenreId" name="GenreId">
+        <option value=""></option>
+        <option selected="selected" value="1">B+</option>
+        <option value="2">B-</option>
+        <option value="3">A+</option>
+        <option value="4">A-</option>
+        <option value="5">O+</option>
+        <option value="6">O-</option>
+        <option value="7">AB+</option>
+        <option value="8">AB-</option>
+ 
+       </select>
+    @*
+    <input class="text-box single-line" id="Area" name="Area"
+           type="text" value=" " />
+    *@<br /><br />
+    <td>Area</td><br />
+    @*<input class="text-box single-line" id="Name" name="Name"
+           type="text" value=" " />
+    *@
+    <select id="GenreId" name=" ">
+        <option value="">Lahore</option>
+        <option selected="selected" value="1">Kasur</option>
+        <option value="2">Sheikhupura</option>
+        <option value="3">Faisalabad</option>
+        <option value="4">Islamabad</option>
+        <option value="5">Sargodha</option>
+        <option value="6">Sahewall</option>
+        <option value="7">Shadra</option>
+        <option value="8">narowall</option>
+    </select>
+
+    <br /><br />
+    <td>PhoneNumber</td><br />
+    <input class="text-box single-line" id="City" name="City"
+           type="text" value=" " /><br /><br />
+    <p>
+        <input type="submit" value="Save" /><br /><br />
+    </p>
+</form>

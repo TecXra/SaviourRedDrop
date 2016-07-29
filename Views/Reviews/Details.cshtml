@@ -1,0 +1,42 @@
+﻿@model SaviourRedDrop.Models.Review
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Review</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FeedBack)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeedBack)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.writerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.writerId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

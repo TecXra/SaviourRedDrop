@@ -1,0 +1,182 @@
+html,body
+{
+	margin: 0px;
+	padding: 0px;
+}
+#nav-area
+{
+	background-color:red;
+}
+#logo-size
+{
+	width:250px; 
+	height:150px
+}
+
+#DivHeader
+{
+	position:relative;
+	display:block;
+	width:100%;
+	overflow: hidden;
+	background-color: #F73A3A;
+}
+
+.navbar
+{
+}
+#head-text
+{
+	font-size: 16px;
+	display: inline-block;
+	float: right;
+	font-family:Arial;
+}
+.nav
+{
+	padding-top: 20px;
+}
+ol,ul
+{
+	list-style: none;
+}
+#head-text > li
+{
+	margin-right: 40px;
+	position: relative;
+    float: left;
+}
+.icon-bar 
+{
+	background-color: white;
+}
+
+li> a  
+{
+	color: rgba(255, 255, 240, 0.8);
+	text-decoration: none;
+}
+
+.active >a , li > a:hover , li>a:focus
+{
+	color: white;
+	text-decoration: none;
+}
+
+#name-div
+{
+	width: 100%;
+	height: auto;
+	margin-top: 5px;
+	padding-top:5px;
+	padding-bottom: 5px;
+	border-bottom:rgba(5, 13, 0, 0.3) 1px solid; 
+}
+#name-div:hover
+{
+	background-color: #EEEEEE;
+}
+.Res-logo
+{
+	height: 120px;
+	width: 150px;
+	margin: 10px;
+}
+@media(max-width: 400px)
+{
+	div>h2
+	{
+		font-size: 22px;
+	}
+	.Res-logo
+	{
+		height: 100px;
+		width: 120px;
+	}
+}
+@media(max-width: 440px)
+{
+	.Res-logo
+	{
+		height: 80px;
+		width: 100px;
+	}
+}
+
+
+ol > li > a, ol > li > a:hover, ol > li > a:focus
+{
+	color: #F73A3A;
+}
+
+
+#a-color
+	{
+		color: #F73A3A;
+	}
+	
+
+#bg
+{
+	width: 100%;
+	position: relative;
+	top: 90px;
+	left: 0;
+	right: 0;
+	background: url(images/slide02.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
+.bground
+{
+	height: 250px;
+	width: 100%;
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: url(images/slide02.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+/* footer*/
+
+#bottom
+{
+	
+}
+.foot
+{
+	height: 50px;
+	width: 100%;
+	background-color:#F73A3A;
+	text-align: center;
+	color: white;
+	padding: 15px;
+	line-height: 1.2em;
+}
+
+footer >a
+{
+	text-decoration: none;
+	color: lightgreen;
+}
+
+footer > a:hover
+{
+	text-decoration: none;
+	color: lightgreen;
+}
+
+footer >a:focus
+{
+	text-decoration: none;
+	color: lightgreen;
+}
