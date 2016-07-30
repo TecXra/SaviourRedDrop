@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Newtonsoft.Json;
+using Microsoft.AspNet.Identity;
 
 namespace SaviourRedDrop.Controllers
 {
@@ -23,41 +24,60 @@ namespace SaviourRedDrop.Controllers
             else
                 return View();
         }
-        public ActionResult Details(int id, int mobile = 0)
+
+        [Authorize]
+        public ActionResult Details(int id)
         {
+
+            string uId = User.Identity.GetUserId();
+            var authUser = db.dbUser.FirstOrDefault(c => c.appUserId == uId);
+
+            //   var user = User.Identity.Name;
+
+            //   var test = db.dbCity.FirstOrDefault(c => c.CityName == s);
+
             /*
             
             get current user and set ReviewStatus == id of current user to id
             
             */
-            //    if(0) current user.ReviewStatus == 0
-            //    {
-
-            var user = db.dbUser.Include(p => p.Reviews).Where(u => u.Id == id).Single();
-            if (mobile == 0)
+            if (authUser.ReviewStatus == 0)
             {
 
-             
+                var user = db.dbUser.Include(p => p.Reviews).Where(u => u.Id == id).Single();
+
+                authUser.ReviewStatus = user.Id;
+                db.Entry(authUser).State = EntityState.Modified;
+                db.SaveChanges();
                 return View(user);
-            }
-            else
-            {
-                        var list = JsonConvert.SerializeObject(user,
-                      Formatting.None,
-                      new JsonSerializerSettings()
-                      {
-                          ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize
-                      });
 
-                        return Content(list, "application/json");
+
             }
-               
-            //     }
+            else { // redirect with
+
+                TempData["FlashMessage"] = "Please give the user review first";
+
+                var user = db.dbUser.Include(p => p.Reviews).Where(u => u.Id == authUser.ReviewStatus).Single();
+
+
+
+                return View(user);
+
+            }
             //       else Redirect it to from where is has come with RevieweeID =  currentuser.ReviewStatus to give feedback of this use
 
+            /*
+                      var list = JsonConvert.SerializeObject(user,
+                    Formatting.None,
+                    new JsonSerializerSettings()
+                    {
+                        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize
+                    });
+
+                      return Content(list, "application/json");
+         */
 
 
-          
         }
 
         //   [HttpPost]
@@ -86,6 +106,36 @@ namespace SaviourRedDrop.Controllers
 
             //    return Json(users, JsonRequestBehavior.AllowGet);
 
+        }
+
+        // GET: Reviews/Create
+        public ActionResult AddReview()
+        {
+            //    ViewBag.UserId = new SelectList(db.dbUser, "Id", "UserName");
+            return View();
+        }
+
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public ActionResult AddReview([Bind(Include = "Id,UserId,FeedBack,writerId")] Review review, int mobile = 0)
+        {
+
+            string uId = User.Identity.GetUserId();
+            var authUser = db.dbUser.FirstOrDefault(c => c.appUserId == uId);
+            authUser.ReviewStatus = 0;
+            db.Entry(authUser).State = EntityState.Modified;
+          
+            if (ModelState.IsValid)
+            {
+                review.writerId = authUser.Id;
+                db.dbReview.Add(review);
+                db.SaveChanges();
+                return RedirectToAction("Search", "Home");
+            }
+
+            // ViewBag.UserId = new SelectList(db.dbUser, "Id", "UserName", review.UserId);
+            return View(review);
         }
         public ActionResult SingleUseReviews(int id)
         {
@@ -309,29 +359,7 @@ namespace SaviourRedDrop.Controllers
         //}
 
 
-        // GET: Reviews/Create
-        public ActionResult AddReview()
-        {
-            //    ViewBag.UserId = new SelectList(db.dbUser, "Id", "UserName");
-            return View();
-        }
-
-
-        [HttpPost]
-        // [ValidateAntiForgeryToken]
-        public ActionResult AddReview([Bind(Include = "Id,UserId,FeedBack,writerId")] Review review, int mobile = 0)
-        {
-            review.UserId = 1;
-            if (ModelState.IsValid)
-            {
-                db.dbReview.Add(review);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { id = 1 });
-            }
-
-            // ViewBag.UserId = new SelectList(db.dbUser, "Id", "UserName", review.UserId);
-            return View(review);
-        }
+    
 
         public JsonResult AllList()
         {
@@ -344,7 +372,15 @@ namespace SaviourRedDrop.Controllers
         public string test()
         {
 
-            return "1";
+            string uId = User.Identity.GetUserId();
+            var authUser = db.dbUser.FirstOrDefault(c => c.appUserId == uId);
+           
+
+            //  var user = User.Identity.GetUserId();
+            var user = User.Identity.Name;
+            var test = "";
+    //    var test =     db.dbCity.FirstOrDefault(c => c.CityName == s);
+            return "1 : " + test.ToString();
         }
     }
 }

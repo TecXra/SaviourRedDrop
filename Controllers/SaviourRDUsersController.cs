@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SaviourRedDrop.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNet.Identity;
 
 namespace SaviourRedDrop.Controllers
 {
@@ -66,7 +67,7 @@ namespace SaviourRedDrop.Controllers
                 return Json(saviourRDUser, JsonRequestBehavior.AllowGet);
             }
         }
-
+        [Authorize]
         // GET: SaviourRDUsers/Create
         public ActionResult Create()
         {
@@ -82,11 +83,13 @@ namespace SaviourRedDrop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserName,Name,Password,ReviewStatus,BGId,Area,PhoneNumber")] SaviourRDUser saviourRDUser)
         {
+            string uId = User.Identity.GetUserId();
+            saviourRDUser.appUserId = uId;
             if (ModelState.IsValid)
             {
                 db.dbUser.Add(saviourRDUser);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.BGId = new SelectList(db.dbBloodGroup, "Id", "BloodGroupName", saviourRDUser.BGId);

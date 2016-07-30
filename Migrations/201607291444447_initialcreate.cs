@@ -3,7 +3,7 @@ namespace SaviourRedDrop.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initialcreate : DbMigration
     {
         public override void Up()
         {
@@ -48,6 +48,7 @@ namespace SaviourRedDrop.Migrations
                         Password = c.String(),
                         ReviewStatus = c.Int(nullable: false),
                         BGId = c.Int(nullable: false),
+                        appUserId = c.String(),
                         Area = c.Int(nullable: false),
                         PhoneNumber = c.String(),
                     })

@@ -63,7 +63,7 @@ namespace SaviourRedDrop.Migrations
             bloodGroup.ForEach(d => context.dbBloodGroup.Add(d));
 
             context.SaveChanges();
-          
+
 
             /****************************************************/
             var abcd = new List<SaviourRDUser>

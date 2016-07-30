@@ -29,6 +29,8 @@ namespace SaviourRedDrop.Models
         public int BGId { set; get; }
 
 
+        public string appUserId { set; get; }
+
         
         [ForeignKey("BGId")]
         public virtual BloodGroup BloodGroup { get; set; }
